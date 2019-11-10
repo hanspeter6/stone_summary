@@ -1,9 +1,11 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{test2}
+\title{summary on stone}
 \author{hanspeter6 }
 \date{November 2019}
+
+\usepackage{natbib}
 
 \begin{document}
 
@@ -11,18 +13,14 @@
 
 \section{Introduction}
 
-
-Part I All from Jones
-
 1 Projection Pursuit
 
 1.1 p71
 
-Shown already:
-
-• Signal mixtures tend to have gaussian pdf and source signals do not
-
-• A source signal can be extracted (unmixed) by taking the inner product of a weight vector and the signal mixtures where it provides an orthogonal projection of the signal mixtures. $s=Wx$.
+\begin{itemize}
+    \item  Signal mixtures tend to have gaussian pdf and source signals do not
+    \item A source signal can be extracted (unmixed) by taking the inner product of a weight vector and the signal mixtures where it provides an orthogonal projection of the signal mixtures. $s=Wx$.
+\end{itemize}
 
 But, how do we find W?, the unmixing matrix (vector)
 
@@ -38,9 +36,7 @@ Its important to note that the converse of the CLT is not generally true. That i
 
 So, in summary: given a set of gaussian mixtures, we can find each source signal by finding the unmixing vector that extracts the most non-gaussian signal. One strategy for doing this is to define a measure of “non-gausianity” and then finding the unmixing vector that maximises this measure.
 
-Note: We will assume that our source signals are of only one type of non-gaussian signal, ie super-gaussian. There are in fact two types: super-gaussian and sub-gaussian or platykurtotic and leptokurtotic, respectively. The first in contrast to the second has most of its values clustered around zero. (proj pursuit methods based on Kullback-Leibler divergence can extract source signals from mixtures of super- and sub-gaussian (see source: FastICA by Hyvarinen et al, 2001a) Compare with the R methods???
-
-So, our super-gaussian signals have pdfs that are more peaky than typical of gaussian signals, implying that we will aim to find weight vectors that maximise the “peakyness” of signals.
+Two types: super-gaussian and sub-gaussian or platykurtotic and leptokurtotic, respectively. The first in contrast to the second has most of its values clustered around zero. (proj pursuit methods based on Kullback-Leibler divergence can extract source signals from mixtures of super- and sub-gaussian (see source: FastICA by Hyvarinen et al, 2001a) Compare with the R methods???
 
 1.3 p.73
 
@@ -48,12 +44,15 @@ Kurtosis is a measure of “peakyness”. So, we would try to find an unmixing v
 
 Kurtosis is defined as:
 
-
-
-
-
-$K=\frac{\frac{1}{N}\sum_{t=1}^{N}(\bar{y}-y^{t})^{4}}{(\frac{1}{N}\sum_{t=1}^{N}(\bar{y}-y^{t})^{2})^{2}}-3$
+$$K=\frac{\frac{1}{N}\sum_{t=1}^{N}(\bar{y}-y^{t})^{4}}{(\frac{1}{N}\sum_{t=1}^{N}(\bar{y}-y^{t})^{2})^{2}}-3$$
 
 The numerator is the important term and the constant (3) ensures that gaussian signals have zero kurtosis. Super-gaussian signals have positive kurtosis and sub-gaussian signals have negative kurtosis. The denominator is simply the variance of y, ensuring the kurtosis takes account of the signal variance.
+
+\section{Projection pursuit}
+
+\cite{stone2004independent} contrasts projection pursuit methods with ICA as the former seeking one projection at a time such that the extracted signal is as non-gaussian as possible, while the latter typically extracting $M$ signals simultaneously from $M$ signal mixtures.
+
+\bibliographystyle{apalike}
+\bibliography{references}
 
 \end{document}
